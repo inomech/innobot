@@ -44,6 +44,7 @@ ros2 run innobot_core pnp_client.py --ros-args --params-file <path to cloned rep
 ```
 8. Watch the PnP execution in RViz 
 
+
 <div align="center">
 
 ![](resource/rviz_pnp.gif)
