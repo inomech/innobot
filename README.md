@@ -50,4 +50,10 @@ ros2 run innobot_core pnp_client.py --ros-args --params-file <path to cloned rep
 
 </div>
 
+## Pick and Place with real hardware
+
+TODO
+
+
+
 [def_inobot_homepage]: https://www.innobot.eu
