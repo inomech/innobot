@@ -1,0 +1,10 @@
+# Goal
+geometry_msgs/Pose pick_pose
+geometry_msgs/Pose place_pose
+float64 object_width
+---
+# Result
+bool success
+---
+# Feedback
+# float64 current_angle # [deg]

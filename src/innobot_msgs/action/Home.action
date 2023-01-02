@@ -1,0 +1,8 @@
+# Goal
+float64 position
+---
+# Result
+bool success
+---
+# Feedback
+float64 current_angle # [deg]

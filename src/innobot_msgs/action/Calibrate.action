@@ -1,0 +1,8 @@
+# Goal
+#geometry_msgs/Pose[] cal_poses
+geometry_msgs/Pose cal_pose
+---
+# Result
+bool success
+---
+# Feedback

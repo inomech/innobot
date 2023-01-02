@@ -1,0 +1,235 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="innobot_arm" params="prefix">
+
+    <xacro:arg name="prefix" default="" />
+    
+    <!-- links -->
+    
+    
+    
+    <link name="${prefix}base_link">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+        <mass value="13.855"/>
+        <inertia ixx="0.035465" ixy="0.0" ixz="-0.0" iyy="0.035483" iyz="-6e-06" izz="0.056413"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://innobot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://innobot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}link_1_1">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+        <mass value="12.011"/>
+        <inertia ixx="0.06297" ixy="0.0" ixz="-0.0" iyy="0.071" iyz="9.4e-05" izz="0.046659"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="0.0 0.0 -0.075"/>
+        <geometry>
+          <mesh filename="package://innobot_description/meshes/link_1_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0.0 0.0 -0.075"/>
+        <geometry>
+          <mesh filename="package://innobot_description/meshes/link_1_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}link_2_1">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0.0 0.0 0.075"/>
+        <mass value="15.936"/>
+        <inertia ixx="0.134333" ixy="-2.7e-05" ixz="-0.000521" iyy="0.140602" iyz="7.6e-05" izz="0.030731"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="0.0 0.0 -0.238"/>
+        <geometry>
+          <mesh filename="package://innobot_description/meshes/link_2_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0.0 0.0 -0.238"/>
+        <geometry>
+          <mesh filename="package://innobot_description/meshes/link_2_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}link_3_1">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0.0 0.0 0.0155"/>
+        <mass value="5.041004757219209"/>
+        <inertia ixx="0.009332" ixy="-2e-06" ixz="-4.5e-05" iyy="0.009148" iyz="6.6e-05" izz="0.005579"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="0.0 0.0 -0.459"/>
+        <geometry>
+          <mesh filename="package://innobot_description/meshes/link_3_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0.0 0.0 -0.459"/>
+        <geometry>
+          <mesh filename="package://innobot_description/meshes/link_3_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}link_4_1">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+        <mass value="3.5598085247676114"/>
+        <inertia ixx="0.008642" ixy="1e-06" ixz="-7.4e-05" iyy="0.009421" iyz="-1.6e-05" izz="0.003882"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="0.0 0.0 -0.56"/>
+        <geometry>
+          <mesh filename="package://innobot_description/meshes/link_4_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0.0 0.0 -0.56"/>
+        <geometry>
+          <mesh filename="package://innobot_description/meshes/link_4_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}link_5_1">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0.0 0.0 0.004"/>
+        <mass value="1.3072389659535424"/>
+        <inertia ixx="0.000919" ixy="0.0" ixz="3e-06" iyy="0.000767" iyz="-1.6e-05" izz="0.000684"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="0.0 0.0 -0.683"/>
+        <geometry>
+          <mesh filename="package://innobot_description/meshes/link_5_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0.0 0.0 -0.683"/>
+        <geometry>
+          <mesh filename="package://innobot_description/meshes/link_5_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}link_6_1">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0.0 0.0 0.040"/>
+        <mass value="0.16956132368991875"/>
+        <inertia ixx="2.5e-05" ixy="-0.0" ixz="0.0" iyy="2.5e-05" iyz="-0.0" izz="4.1e-05"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="0.0 0.0 -0.734"/>
+        <geometry>
+          <mesh filename="package://innobot_description/meshes/link_6_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0.0 0.0 -0.734"/>
+        <geometry>
+          <mesh filename="package://innobot_description/meshes/link_6_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}tcp">
+      
+    </link>
+
+
+    <!-- joints -->
+    
+    <joint name="${prefix}fixed" type="fixed">
+      <parent link="${prefix}world"/>
+      <child link="${prefix}base_link"/>
+    </joint>
+
+    <joint name="${prefix}link_1_joint" type="revolute">
+      <origin rpy="0 0 -1.57" xyz="0.0 0.0 0.075"/>
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}link_1_1"/>
+      <axis xyz="0.0 0.0 -1.0"/>
+      <limit effort="150" velocity="1.0" lower="-2.1" upper="2.1"/>
+    </joint>
+
+    <joint name="${prefix}link_2_joint" type="revolute">
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.163"/>
+      <parent link="${prefix}link_1_1"/>
+      <child link="${prefix}link_2_1"/>
+      <axis xyz="-1.0 0.0 0.0"/>
+      <limit effort="150" velocity="1.0" lower="-1.5" upper="1.5"/>
+    </joint>
+
+    <joint name="${prefix}link_3_joint" type="revolute">
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.221"/>
+      <parent link="${prefix}link_2_1"/>
+      <child link="${prefix}link_3_1"/>
+      <axis xyz="-1.0 0.0 0.0"/>
+      <limit effort="150" velocity="1.0" lower="-1.5" upper="1.5"/>
+    </joint>
+
+    <joint name="${prefix}link_4_joint" type="revolute">
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.10"/>
+      <parent link="${prefix}link_3_1"/>
+      <child link="${prefix}link_4_1"/>
+      <axis xyz="0.0 0.0 -1.0"/>
+      <limit effort="150" velocity="1.0" lower="-1.5" upper="1.5"/>
+    </joint>
+
+    <joint name="${prefix}link_5_joint" type="revolute">
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.123"/>
+      <parent link="${prefix}link_4_1"/>
+      <child link="${prefix}link_5_1"/>
+      <axis xyz="-1.0 0.0 0.0"/>
+      <limit effort="150" velocity="1.0" lower="-1.5" upper="1.5"/>
+    </joint>
+
+    <joint name="${prefix}link_6_joint" type="revolute">
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.05"/>
+      <parent link="${prefix}link_5_1"/>
+      <child link="${prefix}link_6_1"/>
+      <axis xyz="0.0 0.0 -1.0"/>
+      <limit effort="150" velocity="1.0" lower="-3.14" upper="3.14"/>
+    </joint>
+
+    <joint name="${prefix}tcp_joint" type="fixed">
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.13"/>
+      <parent link="${prefix}link_6_1"/>
+      <child link="${prefix}tcp"/>
+      <axis xyz="0.0 0.0 -1.0"/>
+      <limit effort="150" velocity="1.0" lower="-3.14" upper="3.14"/>
+    </joint>
+
+    <joint name="${prefix}world_to_camera" type="fixed">
+      <parent link="${prefix}world"/>
+      <child link="${prefix}camera_frame"/>
+      <origin xyz="0.0 -0.5 1.25" rpy="0 0 0"/>
+    </joint>
+
+  </xacro:macro>
+
+</robot>

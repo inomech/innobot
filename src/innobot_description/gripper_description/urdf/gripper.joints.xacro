@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<robot name="gripper" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<joint name="${prefix}gripper_joint_1" type="continuous">
+  <origin xyz="0.007 -0.004 0.044" rpy="0 0 0"/>
+  <parent link="${prefix}gripper"/>
+  <child link="${prefix}gripper_shoulder_upper_right_1"/>
+  <axis xyz="0.0 1.0 -0.0"/>
+  <mimic joint="right_finger_joint" multiplier="1" offset="0"/>
+</joint>
+
+<joint name="${prefix}right_finger_joint" type="continuous">
+  <origin xyz="0.014 -0.004 0.024" rpy="0 0 0"/>
+  <parent link="${prefix}gripper"/>
+  <child link="${prefix}gripper_shoulder_lower_right_1"/>
+  <axis xyz="0.0 1.0 -0.0"/>
+</joint>
+
+<joint name="${prefix}gripper_joint_3" type="continuous">
+  <origin xyz="0.04 0.001 0.0" rpy="0 0 0"/>
+  <parent link="${prefix}gripper_shoulder_lower_right_1"/>
+  <child link="${prefix}gripper_finger_right_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+  <mimic joint="${prefix}right_finger_joint" multiplier="1" offset="0"/>
+</joint>
+
+<joint name="${prefix}gripper_joint_4" type="continuous">
+  <origin xyz="-0.007 -0.004 0.044" rpy="0 0 0"/>
+  <parent link="${prefix}gripper"/>
+  <child link="${prefix}gripper_shoulder_upper_left_1"/>
+  <axis xyz="-0.0 -1.0 0.0"/>
+  <mimic joint="${prefix}right_finger_joint" multiplier="1" offset="0"/>
+</joint>
+
+<joint name="${prefix}left_finger_joint" type="continuous">
+  <origin xyz="-0.014 -0.004 0.024" rpy="0 0 0"/>
+  <parent link="${prefix}gripper"/>
+  <child link="${prefix}gripper_shoulder_lower_left_1"/>
+  <axis xyz="-0.0 -1.0 0.0"/>
+  <mimic joint="${prefix}right_finger_joint" multiplier="1" offset="0"/>
+</joint>
+
+<joint name="${prefix}gripper_joint_6" type="continuous">
+  <origin xyz="-0.04 0.001 0.0" rpy="0 0 0"/>
+  <parent link="${prefix}gripper_shoulder_lower_left_1"/>
+  <child link="${prefix}gripper_finger_left_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+  <mimic joint="${prefix}right_finger_joint" multiplier="-1" offset="0"/>
+</joint>
+
+
+</robot>

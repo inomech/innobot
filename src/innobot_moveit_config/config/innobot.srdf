@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="innobot">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="arm">
+        <chain base_link="base_link" tip_link="tcp"/>
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="home" group="arm">
+        <joint name="link_1_joint" value="0"/>
+        <joint name="link_2_joint" value="0"/>
+        <joint name="link_3_joint" value="0"/>
+        <joint name="link_4_joint" value="0"/>
+        <joint name="link_5_joint" value="0"/>
+        <joint name="link_6_joint" value="0"/>
+    </group_state>
+    <group_state name="test" group="arm">
+        <joint name="link_1_joint" value="-0.7309"/>
+        <joint name="link_2_joint" value="-0.9199"/>
+        <joint name="link_3_joint" value="-0.4227"/>
+        <joint name="link_4_joint" value="-0.4724"/>
+        <joint name="link_5_joint" value="-0.2072"/>
+        <joint name="link_6_joint" value="0"/>
+    </group_state>
+    <group_state name="approach" group="arm">
+        <joint name="link_1_joint" value="0.0000"/>
+        <joint name="link_2_joint" value="-0.5718"/>
+        <joint name="link_3_joint" value="1.3508"/>
+        <joint name="link_4_joint" value="0.0000"/>
+        <joint name="link_5_joint" value="-0.5387"/>
+        <joint name="link_6_joint" value="0.0000"/>
+    </group_state>
+    <group_state name="pick" group="arm">
+        <joint name="link_1_joint" value="0.0000"/>
+        <joint name="link_2_joint" value="-1.0691"/>
+        <joint name="link_3_joint" value="1.3508"/>
+        <joint name="link_4_joint" value="0.0000"/>
+        <joint name="link_5_joint" value="-0.8867"/>
+        <joint name="link_6_joint" value="0.0000"/>
+    </group_state>
+    <group_state name="retreat" group="arm">
+        <joint name="link_1_joint" value="1.0326"/>
+        <joint name="link_2_joint" value="-0.8038"/>
+        <joint name="link_3_joint" value="1.2514"/>
+        <joint name="link_4_joint" value="0.0000"/>
+        <joint name="link_5_joint" value="-0.5054"/>
+        <joint name="link_6_joint" value="0.0000"/>
+    </group_state>
+    <group_state name="place" group="arm">
+        <joint name="link_1_joint" value="1.0326"/>
+        <joint name="link_2_joint" value="-1.1519"/>
+        <joint name="link_3_joint" value="1.4337"/>
+        <joint name="link_4_joint" value="0.0000"/>
+        <joint name="link_5_joint" value="-0.8867"/>
+        <joint name="link_6_joint" value="0.0000"/>
+    </group_state>
+    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
+    <virtual_joint name="FixedBase" type="fixed" parent_frame="world" child_link="base_link"/>
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="base_link" link2="gripper_base_link" reason="Never"/>
+    <disable_collisions link1="base_link" link2="gripper_finger_right_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="gripper_shoulder_lower_left_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="gripper_shoulder_lower_right_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="gripper_shoulder_upper_left_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="gripper_shoulder_upper_right_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="link_1_1" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="link_2_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="link_3_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="link_4_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="link_5_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="link_6_1" reason="Never"/>
+    <disable_collisions link1="gripper_base_link" link2="gripper_shoulder_lower_left_1" reason="Adjacent"/>
+    <disable_collisions link1="gripper_base_link" link2="gripper_shoulder_lower_right_1" reason="Adjacent"/>
+    <disable_collisions link1="gripper_base_link" link2="gripper_shoulder_upper_left_1" reason="Adjacent"/>
+    <disable_collisions link1="gripper_base_link" link2="gripper_shoulder_upper_right_1" reason="Adjacent"/>
+    <disable_collisions link1="gripper_base_link" link2="link_1_1" reason="Never"/>
+    <disable_collisions link1="gripper_base_link" link2="link_2_1" reason="Never"/>
+    <disable_collisions link1="gripper_base_link" link2="link_3_1" reason="Never"/>
+    <disable_collisions link1="gripper_base_link" link2="link_4_1" reason="Never"/>
+    <disable_collisions link1="gripper_base_link" link2="link_5_1" reason="Never"/>
+    <disable_collisions link1="gripper_base_link" link2="link_6_1" reason="Adjacent"/>
+    <disable_collisions link1="gripper_finger_left_1" link2="gripper_shoulder_lower_left_1" reason="Adjacent"/>
+    <disable_collisions link1="gripper_finger_left_1" link2="link_1_1" reason="Never"/>
+    <disable_collisions link1="gripper_finger_left_1" link2="link_2_1" reason="Never"/>
+    <disable_collisions link1="gripper_finger_left_1" link2="link_3_1" reason="Never"/>
+    <disable_collisions link1="gripper_finger_left_1" link2="link_4_1" reason="Never"/>
+    <disable_collisions link1="gripper_finger_left_1" link2="link_5_1" reason="Never"/>
+    <disable_collisions link1="gripper_finger_right_1" link2="gripper_shoulder_lower_right_1" reason="Adjacent"/>
+    <disable_collisions link1="gripper_finger_right_1" link2="link_1_1" reason="Never"/>
+    <disable_collisions link1="gripper_finger_right_1" link2="link_2_1" reason="Never"/>
+    <disable_collisions link1="gripper_finger_right_1" link2="link_3_1" reason="Never"/>
+    <disable_collisions link1="gripper_finger_right_1" link2="link_4_1" reason="Never"/>
+    <disable_collisions link1="gripper_finger_right_1" link2="link_5_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_lower_left_1" link2="link_1_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_lower_left_1" link2="link_2_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_lower_left_1" link2="link_3_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_lower_left_1" link2="link_4_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_lower_left_1" link2="link_5_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_lower_right_1" link2="link_1_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_lower_right_1" link2="link_2_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_lower_right_1" link2="link_3_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_lower_right_1" link2="link_4_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_lower_right_1" link2="link_5_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_upper_left_1" link2="link_1_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_upper_left_1" link2="link_2_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_upper_left_1" link2="link_3_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_upper_left_1" link2="link_4_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_upper_left_1" link2="link_5_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_upper_left_1" link2="link_6_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_upper_right_1" link2="link_1_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_upper_right_1" link2="link_2_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_upper_right_1" link2="link_3_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_upper_right_1" link2="link_4_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_upper_right_1" link2="link_5_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_upper_right_1" link2="link_6_1" reason="Never"/>
+    <disable_collisions link1="link_1_1" link2="link_2_1" reason="Adjacent"/>
+    <disable_collisions link1="link_1_1" link2="link_3_1" reason="Never"/>
+    <disable_collisions link1="link_1_1" link2="link_4_1" reason="Never"/>
+    <disable_collisions link1="link_1_1" link2="link_5_1" reason="Never"/>
+    <disable_collisions link1="link_1_1" link2="link_6_1" reason="Never"/>
+    <disable_collisions link1="link_2_1" link2="link_3_1" reason="Adjacent"/>
+    <disable_collisions link1="link_2_1" link2="link_4_1" reason="Never"/>
+    <disable_collisions link1="link_2_1" link2="link_5_1" reason="Never"/>
+    <disable_collisions link1="link_2_1" link2="link_6_1" reason="Never"/>
+    <disable_collisions link1="link_3_1" link2="link_4_1" reason="Adjacent"/>
+    <disable_collisions link1="link_3_1" link2="link_5_1" reason="Never"/>
+    <disable_collisions link1="link_3_1" link2="link_6_1" reason="Never"/>
+    <disable_collisions link1="link_4_1" link2="link_5_1" reason="Adjacent"/>
+    <disable_collisions link1="link_4_1" link2="link_6_1" reason="Never"/>
+    <disable_collisions link1="link_5_1" link2="link_6_1" reason="Adjacent"/>
+</robot>

@@ -1,0 +1,268 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+     <xacro:macro name="mimic_joint_plugin_gazebo" params="name_prefix parent_joint mimic_joint has_pid:=false multiplier:=1.0 offset:=0 sensitiveness:=0.0 max_effort:=1.0 robot_namespace:=''">
+        <gazebo>
+        <plugin name="${name_prefix}mimic_joint_plugin" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so">
+            <joint>${parent_joint}</joint>
+            <mimicJoint>${mimic_joint}</mimicJoint>
+            <xacro:if value="${has_pid}">                     <!-- if set to true, PID parameters from "/gazebo_ros_control/pid_gains/${mimic_joint}" are loaded -->
+                <hasPID />
+            </xacro:if>
+            <multiplier>${multiplier}</multiplier>
+            <offset>${offset}</offset>
+            <sensitiveness>${sensitiveness}</sensitiveness>   <!-- if absolute difference between setpoint and process value is below this threshold, do nothing; 0.0 = disable [rad] -->
+            <maxEffort>${max_effort}</maxEffort>              <!-- only taken into account if has_pid:=true [Nm] -->
+            <xacro:unless value="${robot_namespace == ''}">
+                <robotNamespace>($robot_namespace)</robotNamespace>
+            </xacro:unless>
+        </plugin>
+        </gazebo>
+    </xacro:macro>
+
+  <xacro:macro name="innobot_gripper" params="prefix">
+
+    <link name="${prefix}gripper_base_link">
+      <inertial>
+        <origin xyz="7.274575615099804e-05 2.505983529119562e-06 0.007252366417755507" rpy="0 0 0"/>
+        <mass value="0.5374075429473185"/>
+        <inertia ixx="0.000224" iyy="0.000267" izz="0.000226" ixy="-1e-06" iyz="-2e-06" ixz="-1e-06"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://innobot_description/gripper_description/meshes/gripper_base_link.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://innobot_description/gripper_description/meshes/gripper_base_link.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}gripper_shoulder_upper_right_1">
+      <inertial>
+        <origin xyz="0.020000015929033884 0.003999998638672086 2.6482678550099337e-10" rpy="0 0 0"/>
+        <mass value="0.012854575385027496"/>
+        <inertia ixx="0.0" iyy="2e-06" izz="2e-06" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+      </inertial>
+      <visual>
+        <origin xyz="-0.007 0.004 -0.044" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://innobot_description/gripper_description/meshes/gripper_shoulder_upper_right_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="-0.007 0.004 -0.044" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://innobot_description/gripper_description/meshes/gripper_shoulder_upper_right_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}gripper_shoulder_lower_right_1">
+      <inertial>
+        <origin xyz="0.005554143092090817 0.00510620755788157 -0.0003329198861910035" rpy="0 0 0"/>
+        <mass value="0.044576865883984705"/>
+        <inertia ixx="2e-06" iyy="9e-06" izz="8e-06" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+      </inertial>
+      <visual>
+        <origin xyz="-0.014 0.004 -0.024" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://innobot_description/gripper_description/meshes/gripper_shoulder_lower_right_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="-0.014 0.004 -0.024" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://innobot_description/gripper_description/meshes/gripper_shoulder_lower_right_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}gripper_finger_right_1">
+      <inertial>
+        <origin xyz="-0.007345938165377042 0.0029516918108567244 0.027163443177206467" rpy="0 0 0"/>
+        <mass value="0.09442988469167828"/>
+        <inertia ixx="3.8e-05" iyy="3.7e-05" izz="5e-06" ixy="0.0" iyz="-0.0" ixz="4e-06"/>
+      </inertial>
+      <visual>
+        <origin xyz="-0.054 0.003 -0.024" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://innobot_description/gripper_description/meshes/gripper_finger_right_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="-0.054 0.003 -0.024" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://innobot_description/gripper_description/meshes/gripper_finger_right_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}gripper_shoulder_upper_left_1">
+      <inertial>
+        <origin xyz="-0.019999984070966367 0.0039999986386720955 2.648270491789617e-10" rpy="0 0 0"/>
+        <mass value="0.012854575385027217"/>
+        <inertia ixx="0.0" iyy="2e-06" izz="2e-06" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+      </inertial>
+      <visual>
+        <origin xyz="0.007 0.004 -0.044" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://innobot_description/gripper_description/meshes/gripper_shoulder_upper_left_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="0.007 0.004 -0.044" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://innobot_description/gripper_description/meshes/gripper_shoulder_upper_left_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}gripper_shoulder_lower_left_1">
+      <inertial>
+        <origin xyz="-0.00645222840424718 0.003999996700491056 -0.0004062980955956176" rpy="0 0 0"/>
+        <mass value="0.038506719386524994"/>
+        <inertia ixx="2e-06" iyy="9e-06" izz="7e-06" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+      </inertial>
+      <visual>
+        <origin xyz="0.014 0.004 -0.024" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://innobot_description/gripper_description/meshes/gripper_shoulder_lower_left_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="0.014 0.004 -0.024" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://innobot_description/gripper_description/meshes/gripper_shoulder_lower_left_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}gripper_finger_left_1">
+      <inertial>
+        <origin xyz="0.007342669733612722 0.00294742532298488 0.027148856997984742" rpy="0 0 0"/>
+        <mass value="0.09451020323548479"/>
+        <inertia ixx="3.8e-05" iyy="3.7e-05" izz="5e-06" ixy="-0.0" iyz="-0.0" ixz="-4e-06"/>
+      </inertial>
+      <visual>
+        <origin xyz="0.054 0.003 -0.024" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://innobot_description/gripper_description/meshes/gripper_finger_left_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="0.054 0.003 -0.024" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://innobot_description/gripper_description/meshes/gripper_finger_left_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    
+    <joint name="${prefix}right_finger_joint" type="continuous">
+      <origin xyz="0.014 -0.004 0.024" rpy="0 0 0"/>
+      <parent link="${prefix}gripper_base_link"/>
+      <child link="${prefix}gripper_shoulder_lower_right_1"/>
+      <axis xyz="0.0 -1.0 0.0"/>
+    </joint>
+
+
+    <joint name="${prefix}gripper_joint_1" type="continuous">
+      <origin xyz="0.007 -0.004 0.044" rpy="0 0 0"/>
+      <parent link="${prefix}gripper_base_link"/>
+      <child link="${prefix}gripper_shoulder_upper_right_1"/>
+      <axis xyz="0.0 -1.0 0.0"/>
+      <mimic joint="${prefix}right_finger_joint" multiplier="1" offset="0"/>
+    </joint>
+
+    <xacro:mimic_joint_plugin_gazebo name_prefix="joint_1_to_right_finger_joint"
+    parent_joint="${prefix}right_finger_joint" mimic_joint="${prefix}gripper_joint_1" 
+    has_pid="false" multiplier="1.0" max_effort="1000.0" />
+
+
+    <joint name="${prefix}gripper_joint_3" type="continuous">
+      <origin xyz="0.04 0.001 0.0" rpy="0 0 0"/>
+      <parent link="${prefix}gripper_shoulder_lower_right_1"/>
+      <child link="${prefix}gripper_finger_right_1"/>
+      <axis xyz="0.0 1.0 0.0"/>
+      <mimic joint="${prefix}right_finger_joint" multiplier="1" offset="0"/>
+    </joint>
+
+    <xacro:mimic_joint_plugin_gazebo name_prefix="joint_3_to_right_finger_joint"
+    parent_joint="${prefix}right_finger_joint" mimic_joint="${prefix}gripper_joint_3" 
+    has_pid="false" multiplier="1.0" max_effort="1000.0" />
+
+
+    <joint name="${prefix}gripper_joint_4" type="continuous">
+      <origin xyz="-0.007 -0.004 0.044" rpy="0 0 0"/>
+      <parent link="${prefix}gripper_base_link"/>
+      <child link="${prefix}gripper_shoulder_upper_left_1"/>
+      <axis xyz="0.0 1.0 0.0"/>
+      <mimic joint="${prefix}right_finger_joint" multiplier="1" offset="0"/>
+    </joint>
+
+    <xacro:mimic_joint_plugin_gazebo name_prefix="joint_4_to_right_finger_joint"
+    parent_joint="${prefix}right_finger_joint" mimic_joint="${prefix}gripper_joint_4" 
+    has_pid="false" multiplier="1.0" max_effort="1000.0" />
+
+
+    <joint name="${prefix}left_finger_joint" type="continuous">
+      <origin xyz="-0.014 -0.004 0.024" rpy="0 0 0"/>
+      <parent link="${prefix}gripper_base_link"/>
+      <child link="${prefix}gripper_shoulder_lower_left_1"/>
+      <axis xyz="0.0 1.0 0.0"/>
+      <mimic joint="${prefix}right_finger_joint" multiplier="1" offset="0"/>
+    </joint>
+
+    <xacro:mimic_joint_plugin_gazebo name_prefix="left_finger_joint_to_right_finger_joint"
+    parent_joint="${prefix}right_finger_joint" mimic_joint="${prefix}left_finger_joint" 
+    has_pid="false" multiplier="1.0" max_effort="1000.0" />
+
+
+    <joint name="${prefix}gripper_joint_6" type="continuous">
+      <origin xyz="-0.04 0.001 0.0" rpy="0 0 0"/>
+      <parent link="${prefix}gripper_shoulder_lower_left_1"/>
+      <child link="${prefix}gripper_finger_left_1"/>
+      <axis xyz="0.0 1.0 0.0"/>
+      <mimic joint="${prefix}right_finger_joint" multiplier="-1" offset="0"/>
+    </joint>
+
+    <xacro:mimic_joint_plugin_gazebo name_prefix="joint_6_to_right_finger_joint"
+    parent_joint="${prefix}right_finger_joint" mimic_joint="${prefix}gripper_joint_6" 
+    has_pid="false" multiplier="-1.0" max_effort="1000.0" />
+
+   
+
+    <!-- might not need for gazebo or rviz -->
+
+<!--     
+    <joint name="${prefix}gripper_joint_2" type="continuous">
+      <origin xyz="0.047 0.001 -0.02" rpy="0 0 0"/>
+      <parent link="${prefix}gripper_shoulder_upper_right_1"/>
+      <child link="${prefix}gripper_finger_right_1"/>
+      <axis xyz="0.0 1.0 -0.0"/>
+      <mimic joint="${prefix}right_finger_joint" multiplier="-1" offset="0"/>
+    </joint>
+
+    <joint name="${prefix}gripper_joint_5" type="continuous">
+      <origin xyz="-0.047 0.001 -0.02" rpy="0 0 0"/>
+      <parent link="${prefix}gripper_shoulder_upper_left_1"/>
+      <child link="${prefix}gripper_finger_left_1"/>
+      <axis xyz="0.0 1.0 -0.0"/>
+      <mimic joint="${prefix}right_finger_joint" multiplier="-1" offset="0"/>
+    </joint> -->
+
+
+  </xacro:macro>
+</robot>

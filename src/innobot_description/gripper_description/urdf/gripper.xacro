@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="innobot_gripper" >
+  
+  <xacro:arg name="prefix" default="" />
+
+  <xacro:include filename="$(find innobot_description)/gripper_description/urdf/gripper.description.urdf.xacro" />
+  <xacro:include filename="$(find innobot_description)/gripper_description/urdf/gripper.control.urdf.xacro" />
+
+
+  <xacro:innobot_gripper prefix="$(arg prefix)"/>
+
+  <xacro:innobot_gripper_ros2_control 
+  name="InobotGripperHardwareInterface"
+  prefix="${arg prefix}"
+  />
+
+
+</robot>
+

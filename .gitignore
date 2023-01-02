@@ -1,0 +1,9 @@
+build/
+log/
+install/
+Universal_Robots_Client_Library/
+Universal_Robots_ROS2_Driver/
+ur_msgs/
+.vscode/
+src/ros2_control/
+.pio/

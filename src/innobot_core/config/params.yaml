@@ -1,0 +1,21 @@
+pick_n_place_client:
+  ros__parameters:
+    pick_pose:
+      position:
+        x: 0.35 
+        y: 0.10
+        z: 0.15
+      orientation:
+        roll: 0.0
+        pitch: 0.0
+        yaw: 0.0
+    place_pose:
+      position:
+        x: 0.10 
+        y: 0.35
+        z: 0.15
+      orientation:
+        roll: 0.0
+        pitch: 0.0
+        yaw: 0.0 
+    object_width: 0.02

@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+<robot name="innobot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- external -->
+  <link name="world"/>
+  
+  <link name="camera_frame"/>
+
+  <xacro:arg name="use_fake_hardware" default="true" />
+  <xacro:arg name="use_sim" default="false" />
+  <xacro:arg name="fake_sensor_commands" default="false" />
+  <xacro:arg name="prefix" default=""/>
+  <xacro:arg name="slowdown" default="2.0"/>
+  <xacro:arg name="use_gripper" default="true"/>
+
+  <!-- innobot arm -->
+
+  <xacro:include filename="$(find innobot_description)/urdf/innobot.description.urdf.xacro" />
+  <xacro:include filename="$(find innobot_description)/urdf/innobot.control.urdf.xacro" />
+ 
+  <xacro:innobot_arm 
+      prefix="$(arg prefix)" 
+     />
+
+  <xacro:innobot_arm_ros2_control 
+    name="InnobotHardwareInterface" prefix="$(arg prefix)" 
+    use_sim="$(arg use_sim)"
+    use_fake_hardware="$(arg use_fake_hardware)"
+    fake_sensor_commands="$(arg fake_sensor_commands)"
+    slowdown="$(arg slowdown)" />
+
+
+  <!-- gripper -->
+
+  <xacro:if value="$(arg use_gripper)">
+
+    <xacro:include filename="$(find innobot_description)/gripper_description/urdf/gripper.description.urdf.xacro" />
+    <xacro:include filename="$(find innobot_description)/gripper_description/urdf/gripper.control.urdf.xacro" />
+    
+    <joint name="$(arg prefix)gripper_to_arm" type="fixed">
+      <origin xyz="0.0 0.0 0.035" rpy="0 0 0"/>
+      <parent link="$(arg prefix)link_6_1"/>
+      <child link="$(arg prefix)gripper_base_link"/>
+      <axis xyz="-0.0 0.0 1.0"/>
+    </joint>
+
+    <xacro:innobot_gripper prefix="$(arg prefix)"/>
+    
+    <xacro:innobot_gripper_ros2_control 
+      name="GripperHardwareInterface" prefix="$(arg prefix)" 
+      use_sim="$(arg use_sim)"
+      use_fake_hardware="$(arg use_fake_hardware)"
+      fake_sensor_commands="$(arg fake_sensor_commands)"
+      slowdown="$(arg slowdown)" /> 
+
+    
+    <!-- connect gripper and arm -->
+    
+    
+
+  </xacro:if>
+
+ 
+
+
+</robot>

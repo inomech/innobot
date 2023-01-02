@@ -1,0 +1,16 @@
+<library path="innobot_control_hardware">
+   <class name="innobot_control_hardware/INNOBOTSystemMultiInterfaceHardware"
+         type="innobot_control_hardware::INNOBOTSystemMultiInterfaceHardware"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      INNOBOT robot hardware interface
+    </description>
+  </class>    
+  <class name="innobot_control_hardware/INNOBOTGripper"
+         type="innobot_control_hardware::INNOBOTGripper"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      INNOBOT gripper hardware interface 
+    </description>  
+  </class>
+</library>
