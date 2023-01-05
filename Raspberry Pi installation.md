@@ -130,12 +130,27 @@ Připoj se zpět na RPi a vyzkoušej `uname -v`
 
 # ROS2 setup
 Next steps according to this instruction : [Install ROS 2](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html) :
-1) Set locale
-2) Setup Sources
-3) Install ROS 2 packages
-4) Environment setup
-5) Sourcing the setup script
-6) Try some examples
+- Set locale
+- Setup Sources
+- Install ROS 2 packages
+- Environment setup
+- Sourcing the setup script
+- Try some examples
+1) clone git repo z Gitlabu branch main do adresáře ros2_rbx1   
+``git clone -b product-clean git@gitlab.com:INOMECH/projekty/247-univerzalni_ridici_jednotka.git ~/innobot``
+2) spusť instalaci ROS na RPi   
+``cd ~/innobot``  
+``./ros-setup.sh``
+3) po dokončení zkontroluj instalaci   
+``./check-config.bash``
+4) pokud se instalace nezdaří s výpisem `E: Unable to locate package ***` je problém s [Open Robotics GPG key](https://discourse.ros.org/t/ros-gpg-key-expiration-incident/20669)
+  -  v příkazovém řádku zadej: 
+  ```
+  sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+  ```
+5 pokud u některé knihovny/balicku výstup FAIL tak nutno doinstalovat manuálně 
+    - ``sudo apt install <debianPackage>``, pokud potřeba instalovat debian package
+    - ``pip install <pythonPackage>``, pokud potřeba instalovat python knihovnu
 </div>
 
 
