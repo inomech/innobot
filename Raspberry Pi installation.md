@@ -4,6 +4,7 @@
 **ROS 2 Foxy Fitzroy for Ubuntu Focal**
 
 <div id="RT_PREEMPT">
+
 # Raspberry Pi and Ubuntu Focal and Real-time (RT_PREEMPT) Kernel 
 - Instrukce z [ROS Realtime group github](https://github.com/ros-realtime/linux-real-time-kernel-builder/tree/v5.4.106-rt54-raspi-arm64-lttng-Latest#deploy-new-kernel-on-raspberry-pi4)
   
@@ -93,8 +94,6 @@ cat /sys/kernel/realtime
 $ sudo apt-get update && sudo apt-get upgrade && sudo apt-get install ubuntu-desktop
 ```
 
-
-
 ## Troubleshooting: 
 
 Pokud výpis z `uname -v` neobsahuje PREEMPT_RT, ale myslíš, že jsi vše udělal OK podle instrukcí, potom RPi ignorovalo nový kernel a je potřeba mu ho vnutit:
@@ -128,6 +127,7 @@ Připoj se zpět na RPi a vyzkoušej `uname -v`
 </div>
 
 <div id="ROS2">
+
 # ROS2 setup
 Next steps according to this instruction : [Install ROS 2](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html) :
 1) Set locale
