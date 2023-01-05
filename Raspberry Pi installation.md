@@ -136,6 +136,7 @@ Next steps according to this instruction : [Install ROS 2](https://docs.ros.org/
 - Environment setup
 - Sourcing the setup script
 - Try some examples
+
 All steps by running script, see step 2.
 
 1) clone git repo z Gitlabu branch main do adresáře ros2_rbx1   
