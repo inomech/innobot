@@ -1,11 +1,10 @@
 <div id="RT_PREEMPT">
+ROS 2 Foxy Fitzroy for Ubuntu Focal
 
-# Raspberry Pi and Real-time (RT_PREEMPT) Kernel 
+# Raspberry Pi and Ubuntu Focal and Real-time (RT_PREEMPT) Kernel 
 - Instrukce z [ROS Realtime group github](https://github.com/ros-realtime/linux-real-time-kernel-builder/tree/v5.4.106-rt54-raspi-arm64-lttng-Latest#deploy-new-kernel-on-raspberry-pi4)
-  Co je potřeba: 
-  - Nejprve je potřeba na RPi 4 nainstalovat Ubuntu Server 20.04 LTS 64-bit (oszkoušeno), potom stáhnout adresář se 4 `.deb` soubory které obsahují RT_PREEMPT kernel pro RPi 4 a nakonec přemístit a instalovat kernel soubory z PC na RPi - let's go
-
-## Raspberry setup (odzkoušeno na RPi 4):
+  
+## Raspberry setup (odzkoušeno na RPi 4) - Ubuntu Server 20.04.05 LTS 64-bit
 
 1) Pomocí RPI Imager naisntalovat na SD kartu (ozkoušeno s 32GB) Ubuntu Server 20.04.05 LTS 64-bit: [Raspberry Pi Generic (64-bit ARM) preinstalled server image](https://cdimage.ubuntu.com/releases/focal/release/ubuntu-20.04.5-preinstalled-server-arm64+raspi.img.xz) 
 
@@ -64,7 +63,7 @@ sudo apt-get install mc
 ```
 wget https://github.com/ros-realtime/linux-real-time-kernel-builder/releases/download/5.4.195-rt74-raspi-arm64-lttng/RPI4.RT.Kernel.deb.packages.zip
 ```
-11)Unzip RT Kernel deb packages 
+11) Unzip RT Kernel deb packages 
 ```
 unzip RPI4.RT.Kernel.deb.packages.zip
 ```
@@ -90,10 +89,12 @@ cat /sys/kernel/realtime
 ```
 $ sudo apt-get update && sudo apt-get upgrade && sudo apt-get install ubuntu-desktop
 ```
-16) Next steps according to this instruction : [Install ROS 2](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html) :
-  - Set locale
-  - Setup Sources
-  - Install ROS 2 packages
-  - Environment setup
-  - Sourcing the setup script
-  - Try some examples
+
+# ROS2 setup
+Next steps according to this instruction : [Install ROS 2](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html) :
+1) Set locale
+2) Setup Sources
+3) Install ROS 2 packages
+4) Environment setup
+5) Sourcing the setup script
+6) Try some examples
