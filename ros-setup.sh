@@ -18,6 +18,8 @@ sudo apt update -y
 # ROS2 install
 sudo apt install -y ros-foxy-desktop ros-foxy-moveit
 sudo apt install -y ros-foxy-ros2-control ros-foxy-ros2-controllers ros-foxy-xacro
+sudo apt install -y ros-foxy-ros-base
+sudo apt install -y ros-dev-tools
 sudo apt install -y python3-colcon-common-extensions python3-argcomplete
 
 # rosdep setup
