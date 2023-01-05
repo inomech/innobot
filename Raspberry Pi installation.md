@@ -136,6 +136,8 @@ Next steps according to this instruction : [Install ROS 2](https://docs.ros.org/
 - Environment setup
 - Sourcing the setup script
 - Try some examples
+All steps by running script, see step 2.
+
 1) clone git repo z Gitlabu branch main do adresáře ros2_rbx1   
 ``git clone -b product-clean git@gitlab.com:INOMECH/projekty/247-univerzalni_ridici_jednotka.git ~/innobot``
 2) spusť instalaci ROS na RPi   
@@ -148,7 +150,7 @@ Next steps according to this instruction : [Install ROS 2](https://docs.ros.org/
   ```
   sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
   ```
-5 pokud u některé knihovny/balicku výstup FAIL tak nutno doinstalovat manuálně 
+5) pokud u některé knihovny/balicku výstup FAIL tak nutno doinstalovat manuálně 
     - ``sudo apt install <debianPackage>``, pokud potřeba instalovat debian package
     - ``pip install <pythonPackage>``, pokud potřeba instalovat python knihovnu
 </div>
