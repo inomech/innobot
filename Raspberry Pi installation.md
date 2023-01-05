@@ -1,6 +1,9 @@
-<div id="RT_PREEMPT">
-ROS 2 Foxy Fitzroy for Ubuntu Focal
+[TOC]
 
+
+**ROS 2 Foxy Fitzroy for Ubuntu Focal**
+
+<div id="RT_PREEMPT">
 # Raspberry Pi and Ubuntu Focal and Real-time (RT_PREEMPT) Kernel 
 - Instrukce z [ROS Realtime group github](https://github.com/ros-realtime/linux-real-time-kernel-builder/tree/v5.4.106-rt54-raspi-arm64-lttng-Latest#deploy-new-kernel-on-raspberry-pi4)
   
@@ -90,6 +93,41 @@ cat /sys/kernel/realtime
 $ sudo apt-get update && sudo apt-get upgrade && sudo apt-get install ubuntu-desktop
 ```
 
+
+
+## Troubleshooting: 
+
+Pokud výpis z `uname -v` neobsahuje PREEMPT_RT, ale myslíš, že jsi vše udělal OK podle instrukcí, potom RPi ignorovalo nový kernel a je potřeba mu ho vnutit:
+
+Je nutno upravit vmlinuz a initrd.img:
+
+Zadej pojednom tyhle příkazy a doplň instalovanou verzi kernelu:
+
+- v /boot jsou soubory s názvy jako `config-5.4.0-1053-raspi` a `config-5.3.162.rt68` 
+
+  - `5.4.0-162-rt68` odpovídá ``<kernel-version-rt>`` v `ln` příkazech dole   
+  - `5.4.0-1053-raspi` odpovídá ``<kernel-version>`` v `ln` příkazech dole 
+  - pokud máš novější kernel a v názvy jsou jiné tak v `ln` příkazech zadej svoji verzi
+
+Nacpi RPi nový kernel silou: 
+
+``ubuntu@ubuntu:~$ sudo ln -s -f /boot/vmlinuz-<kernel-version-rt> /boot/vmlinuz``  
+``ubuntu@ubuntu:~$ sudo ln -s -f /boot/vmlinuz-<kernel-version> /boot/vmlinuz.old``  
+``ubuntu@ubuntu:~$ sudo ln -s -f /boot/initrd.img-<kernel-version-rt> /boot/initrd.img``  
+``ubuntu@ubuntu:~$ sudo ln -s -f /boot/initrd.img-<kernel-version> /boot/initrd.img.old``  
+``ubuntu@ubuntu:~$ cd /boot``  
+``ubuntu@ubuntu:/boot$ sudo cp vmlinuz firmware/vmlinuz``  
+``ubuntu@ubuntu:/boot$ sudo cp vmlinuz firmware/vmlinuz.bak``  
+``ubuntu@ubuntu:/boot$ sudo cp initrd.img firmware/initrd.img``  
+``ubuntu@ubuntu:/boot$ sudo cp initrd.img firmware/initrd.img.bak``  
+
+``sudo reboot``  
+
+Připoj se zpět na RPi a vyzkoušej `uname -v`
+
+</div>
+
+<div id="ROS2">
 # ROS2 setup
 Next steps according to this instruction : [Install ROS 2](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html) :
 1) Set locale
@@ -98,3 +136,8 @@ Next steps according to this instruction : [Install ROS 2](https://docs.ros.org/
 4) Environment setup
 5) Sourcing the setup script
 6) Try some examples
+</div>
+
+
+
+
