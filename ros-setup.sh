@@ -1,5 +1,7 @@
 #! /bin/bash
 
+
+
 sudo apt update -y
 sudo apt upgrade -y
 sudo apt install -y curl gnupg2 lsb-release git meld build-essential libfontconfig1 mesa-common-dev libglu1-mesa-dev python3-vcstool
@@ -7,13 +9,25 @@ sudo apt install -y curl gnupg2 lsb-release git meld build-essential libfontconf
 cd $HOME
 
 # ROS2 packages source
+
+# Set locale
+sudo apt update -y 
+sudo apt install-y locales
 sudo locale-gen en_US en_US.UTF-8
 sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+# First ensure that the Ubuntu Universe repository is enabled.
+sudo apt install software-properties-common
+sudo add-apt-repository universe
+
+# Now add the ROS 2 GPG key with apt.
 sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key  -o /usr/share/keyrings/ros-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+# Then add the repository to your sources list.
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 
 sudo apt update -y
+sudo apt upgrade -y
 
 # ROS2 install
 sudo apt install -y ros-foxy-desktop ros-foxy-moveit
