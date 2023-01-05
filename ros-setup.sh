@@ -12,7 +12,7 @@ cd $HOME
 
 # Set locale
 sudo apt update -y 
-sudo apt install-y locales
+sudo apt install -y locales
 sudo locale-gen en_US en_US.UTF-8
 sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 export LANG=en_US.UTF-8
