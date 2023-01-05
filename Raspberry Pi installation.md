@@ -64,7 +64,10 @@ sudo apt-get install mc
 ```
 wget https://github.com/ros-realtime/linux-real-time-kernel-builder/releases/download/5.4.195-rt74-raspi-arm64-lttng/RPI4.RT.Kernel.deb.packages.zip
 ```
-11) unzip RPI4.RT.Kernel.deb.packages.zip
+11)Unzip RT Kernel deb packages 
+```
+unzip RPI4.RT.Kernel.deb.packages.zip
+```
 12) System information before new kernel inmstalation
 ```
 uname -a
