@@ -28,6 +28,33 @@ wifis:
    access-points:
      "WIFI-NAME":
        password: "WIFI-PASSWORD"
+
+```
+  - po isntalaci UBUNTU, pokud je problém se síˇovýcm připojením. Konfigurační soubor pro síťové adaptéry `/etc/netplan/50-cloud-init.yaml`
+```
+network:
+    ethernets:
+        eth0:
+            dhcp4: true
+            optional: true
+    version: 2
+    wifis:
+        wlan0:
+            optional: true
+            access-points:
+                "WIFI-NAME":
+                    password: "WIFI-PASSWORD"
+            dhcp4: true
+
+
+```
+  - v případě změny konfiguračního souboru aplikovat `netplan` příkazy. Wifi se zprovozní až po resratu. V GUI UBUNTU se nezobrazují sítě protože není instalovný GUI manager. Ubuntu server nemá standartně GUI,
+```
+sudo netplan generate
+sudo netplan try
+sudo netplan apply
+sudo reboot
+ip a
 ```
 
 3) Vysuň SD kartu z PC a vlož do RPi: 
