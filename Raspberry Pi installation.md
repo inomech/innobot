@@ -190,5 +190,26 @@ source /opt/ros/foxy/setup.bash
 </div>
 
 
-
-
+# Remote desktop connections
+Popstupovat podle návodu [Install Xrdp On Ubuntu 20](https://operavps.com/install-xrdp-on-ubuntu-20/), nespouštět firewall
+Jsou to tyto příkazy:
+```
+sudo apt-get update -y
+sudo apt install xubuntu-desktop
+sudo apt install xrdp
+sudo systemctl status Xrdp
+sudo adduser xrdp ssl-cert
+sudo systemctl restart xrdp
+```
+## Troubleshooting:
+### light-locker 
+Po připojení ke vzdálené ploše :
+```
+ProblemType: Crash
+Package: light-locker 1.8.0-1ubuntu1
+```
+odinstalovat loght-locekr:
+```
+sudo apt-get remove light-locker
+sudo systemctl restart xrdp
+```
