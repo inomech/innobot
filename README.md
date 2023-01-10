@@ -30,7 +30,7 @@ To setup your environment follow instructions on [INNOBOT Tutorials](https://www
 3. If you haven't got ROS 2 Foxy on your machine setup ROS 2 Foxy on your Ubuntu 20.04 machine by executing the helper script `ros-setup.sh`
 4. Build using `colcon build` 
 5. Start the launch files using the helper script `ros2innobot.bash`
-6. Set the position of the object in respect to the robots base in `innobot_core/config/params.yaml`
+6. Set the position of the object in respect to the robots base in `src/innobot_core/config/params.yaml`
 
 <div align="center">
 
