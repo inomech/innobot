@@ -192,7 +192,7 @@ source /opt/ros/foxy/setup.bash
 
 # Remote desktop connections
 Popstupovat podle návodu [Install Xrdp On Ubuntu 20](https://operavps.com/install-xrdp-on-ubuntu-20/), nespouštět firewall
-Jsou to tyto příkazy:
+1. Jsou to tyto příkazy:
 ```
 sudo apt-get update -y
 sudo apt install xubuntu-desktop
@@ -201,6 +201,12 @@ sudo systemctl status Xrdp
 sudo adduser xrdp ssl-cert
 sudo systemctl restart xrdp
 ```
+2. Create a file called .xsession in the home folder 
+```
+echo -e  "startxfce4\n" >> ~/.xsession
+chmod +x ~/.xsession
+```
+
 ## Troubleshooting:
 ### light-locker 
 Po připojení ke vzdálené ploše :
@@ -213,3 +219,13 @@ odinstalovat loght-locekr:
 sudo apt-get remove light-locker
 sudo systemctl restart xrdp
 ```
+### Log files
+xRDP writes some log files into your system. We would recommend you to have a look at these log files. These logs files might provide useful insight about the problem you are encountering.
+
+You should look at the following files:
+```
+cat ~/.xsession-errors
+cat /var/log/xrdp.log
+cat /var/log/xrdp-sesman.log
+```
+
