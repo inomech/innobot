@@ -197,7 +197,7 @@ Popstupovat podle návodu [Install Xrdp On Ubuntu 20](https://operavps.com/insta
 sudo apt-get update -y
 sudo apt install xubuntu-desktop
 sudo apt install xrdp
-sudo systemctl status Xrdp
+sudo systemctl status xrdp
 sudo adduser xrdp ssl-cert
 sudo systemctl restart xrdp
 ```
