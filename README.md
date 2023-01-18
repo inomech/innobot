@@ -27,10 +27,26 @@ To setup your environment follow instructions on [INNOBOT Tutorials](https://www
 
 1. Clone this repository 
 2. `cd` into clonned repository
-3. If you haven't got ROS 2 Foxy on your machine setup ROS 2 Foxy on your Ubuntu 20.04 machine by executing the helper script `ros-setup.sh`
-4. Build using `colcon build` 
-5. Start the launch files using the helper script `ros2innobot.bash`
-6. Set the position of the object in respect to the robots base in `src/innobot_core/config/params.yaml`
+3. If you haven't got ROS 2 Foxy on your machine setup ROS 2 Foxy on your Ubuntu 20.04 machine by executing the helper script 
+```bash
+./ros-setup.sh
+```
+4. Build using 
+```bash
+colcon build
+``` 
+5. Source setup file
+```bash
+source install/setup.bash
+```
+6. tart the launch files using the helper script 
+```bash
+./ros2innobot.bash 
+```
+7. Set the position of the object in respect to the robots base in 
+```bash
+nano src/innobot_core/config/params.yaml
+```
 
 <div align="center">
 
@@ -38,11 +54,11 @@ To setup your environment follow instructions on [INNOBOT Tutorials](https://www
 
 </div>
 
-7. Call the PnP client 
+8. Call the PnP client 
 ```bash
 ros2 run innobot_core pnp_client.py --ros-args --params-file <path to cloned repository>/src/innobot_core/config/params.yaml
 ```
-8. Watch the PnP execution in RViz 
+9. Watch the PnP execution in RViz 
 
 <div align="center">
 
