@@ -54,11 +54,19 @@ nano src/innobot_core/config/params.yaml
 
 </div>
 
-8. Call the PnP client 
-```bash
-ros2 run innobot_core pnp_client.py --ros-args --params-file <path to cloned repository>/src/innobot_core/config/params.yaml
-```
-9. Watch the PnP execution in RViz 
+8. Call the PnP client
+
+    1. open new terminal 
+    2. `cd` into clonned repository
+    3. Source setup file
+    ```bash
+    source install/setup.bash
+    ```
+    4. Call PnP client
+    ```bash
+    ros2 run innobot_core pnp_client.py --ros-args --params-file src/innobot_core/config/params.yaml
+    ```
+    5. Watch the PnP execution in RViz 
 
 <div align="center">
 
