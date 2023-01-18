@@ -166,7 +166,7 @@ Next steps according to this instruction : [Install ROS 2](https://docs.ros.org/
 
 All steps by running script, see step 2.
 
-1) clone git repo z Gitlabu branch main do adresáře ros2_rbx1   
+1) clone git repo z GitLabu branch product-clean do adresáře innobot   
 ``git clone -b product-clean git@gitlab.com:INOMECH/projekty/247-univerzalni_ridici_jednotka.git ~/innobot``
 2) spusť instalaci ROS na RPi   
 ``cd ~/innobot``  
