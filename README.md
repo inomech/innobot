@@ -15,6 +15,14 @@ ROS 2 Foxy | 3D printed | open-source | designed for learning
 
 # Get Started 
 
+## Prerequisite knowledge required:  
+You must know the basics of Linux. Then, if needed, take the following free cours:
+- [Linux for robotics](https://app.theconstructsim.com/#/Course/40)
+
+Know the basics of Python and C++ are also important. Then, if needed, take the following free courses:
+- [Python3 for robotics](https://app.theconstructsim.com/#/Course/58)
+- [C++ for robotics](https://app.theconstructsim.com/#/Course/59)
+
 ## Setup 
 
 To setup your environment follow instructions on [INNOBOT Tutorials](https://www.innobot.eu/docs/tutorials/start)
