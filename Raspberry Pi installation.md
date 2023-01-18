@@ -118,9 +118,14 @@ cat /sys/kernel/realtime
 ```
 15) Install Ubuntu Desktop 
 ```
-$ sudo apt-get update && sudo apt-get upgrade && sudo apt-get install ubuntu-desktop
+sudo apt-get update && sudo apt-get upgrade && sudo apt-get install ubuntu-desktop
 ```
 
+16) Installation of recommended tools 
+    - Double Commander 
+      ```
+      sudo apt install doublecmd-gtk
+      ```
 ## Troubleshooting: 
 
 Pokud výpis z `uname -v` neobsahuje PREEMPT_RT, ale myslíš, že jsi vše udělal OK podle instrukcí, potom RPi ignorovalo nový kernel a je potřeba mu ho vnutit:
