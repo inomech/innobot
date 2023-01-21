@@ -3,21 +3,26 @@
 <package format="3">
   <name>innobot_calibration</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="lm2292@bath.ac.uk">lukas</maintainer>
-  <license>TODO: License declaration</license>
+  <description>Calibration package for innobot robot arm</description>
+  <maintainer email="macha@inomech.com">Lukas Macha</maintainer>
+  <license>GPL-3.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_python</buildtool_depend>
 
   <depend>rclcpp</depend>
+  <depend>rclpy</depend>
   <depend>control_msgs</depend>
   <depend>rclcpp_action</depend>
-  <depend>inobot_msgs</depend>
-  <depend>geometr_msgs</depend>
-  <depend>moveit_msgs</depend>
+  <depend>innobot_msgs</depend>
+  <depend>geometry_msgs</depend>
+  
   <depend>std_srvs</depend>
   <depend>tf2_ros</depend>
   <depend>tf2_geometry_msgs</depend>
+  
+  <depend>moveit_msgs</depend>
+  <depend>moveit_core</depend>
   <depend>moveit_ros_planning_interface</depend>
 
   <test_depend>ament_lint_auto</test_depend>

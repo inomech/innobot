@@ -15,18 +15,47 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
+
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_python REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(rclpy REQUIRED)
 find_package(control_msgs REQUIRED)
 find_package(rclcpp_action REQUIRED)
-find_package(inobot_msgs REQUIRED)
-find_package(geometr_msgs REQUIRED)
-find_package(moveit_msgs REQUIRED)
+find_package(innobot_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
+
+find_package(moveit_msgs REQUIRED)
+find_package(moveit_core REQUIRED)
 find_package(moveit_ros_planning_interface REQUIRED)
+
+
+# Include Cpp "include" directory
+include_directories(include)
+
+# Create Cpp executable
+add_executable(calibration_server src/calibration_server.cpp)
+ament_target_dependencies(calibration_server rclcpp moveit_msgs moveit_ros_planning_interface innobot_msgs rclcpp_action control_msgs)
+
+# Install Cpp executables
+install(TARGETS
+  calibration_server
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+# Install Python modules
+ament_python_install_package(${PROJECT_NAME})
+
+# Install Python executables
+install(PROGRAMS
+  scripts/calibration_client.py
+  scripts/redcam_subscriber.py
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
