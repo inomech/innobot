@@ -54,6 +54,19 @@ public:
       this->declare_parameter("base_frame", "world");
     }
 
+    // RCLCPP_DEBUG(this->get_logger(), "Initializing moveit_cpp_");
+
+    // this->moveit_cpp_ = std::make_shared<moveit_cpp::MoveItCpp>(this->shared_from_this());
+
+    // RCLCPP_DEBUG(this->get_logger(), "Initializing planning_components");
+
+    // // Planning component associated with a single motion group
+    // this->planning_components = std::make_shared<moveit_cpp::PlanningComponent>("arm", this->moveit_cpp_);
+
+    // // Parameters set on this node
+    // this->plan_parameters_.load(this->shared_from_this());
+    
+
     joint_state_subscription_ = this->create_subscription<sensor_msgs::msg::JointState>(
       "joint_states", 10, std::bind(&PickNPlace::topic_callback, this, _1)
     );
@@ -73,13 +86,14 @@ public:
       this->get_node_waitables_interface(),
       "gripper_controller/gripper_action");
 
+
   }
 
 private:
   // Planning components
-  moveit_cpp::MoveItCppPtr moveit_cpp_;
-  moveit_cpp::PlanningComponentPtr planning_component_;
-  moveit_cpp::PlanningComponent::PlanRequestParameters plan_parameters_;
+  // moveit_cpp::MoveItCppPtr moveit_cpp_;
+  // moveit_cpp::PlanningComponentPtr planning_components;
+  // moveit_cpp::PlanningComponent::PlanRequestParameters plan_parameters_;
   rclcpp_action::Client<GripperCommand>::SharedPtr gripper_client_;
   bool goal_done_;
   std::vector<double> joint_states_; 
@@ -226,7 +240,7 @@ private:
     return poses;
   }
 
-  void doPoses(std::vector<geometry_msgs::msg::Pose>& poses){
+  void doPoses(std::vector<geometry_msgs::msg::Pose>& poses, moveit_cpp::PlanningComponentPtr planning_components, moveit_cpp::MoveItCppPtr moveit_cpp_ptr){
 
     bool success = false;
 
@@ -235,7 +249,7 @@ private:
     
       moveit::core::RobotStatePtr robot_state = nullptr; 
 
-      robot_state = moveit_cpp_->getCurrentState();
+      robot_state = moveit_cpp_ptr->getCurrentState();
 
       if(!robot_state){
         RCLCPP_ERROR_STREAM(this->get_logger(), "Failed to get robot current state");
@@ -258,12 +272,12 @@ private:
       moveit_msgs::msg::Constraints robot_goal = kinematic_constraints::constructGoalConstraints(
           "tcp", goal_pose, position_tolerances, orientation_tolerances);
 
-      if (!moveit_cpp_->getPlanningSceneMonitor()->requestPlanningSceneState())
+      if (!moveit_cpp_ptr->getPlanningSceneMonitor()->requestPlanningSceneState())
       {
         throw std::runtime_error("Failed to get planning scene");
       }
 
-      auto planning_components = std::make_shared<moveit_cpp::PlanningComponent>("arm", moveit_cpp_);
+      // auto planning_components = std::make_shared<moveit_cpp::PlanningComponent>("arm", moveit_cpp_);
 
       moveit_cpp::PlanningComponent::PlanRequestParameters plan_parameters;
       
@@ -276,9 +290,10 @@ private:
       plan_parameters.max_acceleration_scaling_factor = 0.75;
 
       // set planning goal
-      moveit::core::RobotState start_robot_state(moveit_cpp_->getRobotModel());
+      moveit::core::RobotState start_robot_state(moveit_cpp_ptr->getRobotModel());
       moveit::core::robotStateMsgToRobotState(robot_state_msg, start_robot_state);
-      planning_components->setStartState(start_robot_state);
+      // planning_components->setStartState(start_robot_state);
+      planning_components->setStartStateToCurrentState(); 
       planning_components->setGoal({ robot_goal });
 
       // planning for goal
@@ -295,7 +310,7 @@ private:
       // planning_components->execute(false);
 
       // Executes the given trajectory 
-      success = moveit_cpp_->execute("arm", plan_solution.trajectory, false);
+      success = moveit_cpp_ptr->execute("arm", plan_solution.trajectory, false);
 
       bool pose_success = false; 
 
@@ -312,7 +327,7 @@ private:
 
       }else if(i == 4){
 
-        send_goal(0.08);
+        send_goal(0.8);
 
       }
 
@@ -331,13 +346,21 @@ private:
 
     RCLCPP_INFO(this->get_logger(), "Generating Moveit");  
 
-    moveit_cpp_ = std::make_shared<moveit_cpp::MoveItCpp>(this->shared_from_this());
+    RCLCPP_DEBUG(this->get_logger(), "Initializing moveit_cpp_");
+
+    auto moveit_cpp_ptr = std::make_shared<moveit_cpp::MoveItCpp>(this->shared_from_this());
+    moveit_cpp_ptr->getPlanningSceneMonitor()->providePlanningSceneService();
+
+    RCLCPP_DEBUG(this->get_logger(), "Initializing planning_components");
 
     // Planning component associated with a single motion group
-    planning_component_ = std::make_shared<moveit_cpp::PlanningComponent>("arm", moveit_cpp_);
+    auto planning_components = std::make_shared<moveit_cpp::PlanningComponent>("arm", moveit_cpp_ptr);
 
     // Parameters set on this node
-    plan_parameters_.load(this->shared_from_this());
+    // this->plan_parameters_.load(this->shared_from_this());
+
+    
+    
 
     // Check if there is a cancel request
     if (goal_handle->is_canceling()) {
@@ -395,9 +418,15 @@ private:
     
     manipulation_poses.insert(manipulation_poses.end(), place_poses.begin(), place_poses.end());
 
+    // Test round-trip for PnP 
+
+    // manipulation_poses.insert(manipulation_poses.end(), pick_poses.begin(), pick_poses.end());
+
+    // manipulation_poses.insert(manipulation_poses.end(), place_poses.begin(), place_poses.end());
+
 
     // execute all the manipulation poses one by one 
-    doPoses(manipulation_poses);
+    doPoses(manipulation_poses, planning_components, moveit_cpp_ptr);
 
     // TODO: remove unused code for calibration and come up with an easier interface to setting the manipulation poses
     

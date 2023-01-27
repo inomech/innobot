@@ -108,6 +108,7 @@
     <disable_collisions link1="gripper_shoulder_lower_right_1" link2="link_3_1" reason="Never"/>
     <disable_collisions link1="gripper_shoulder_lower_right_1" link2="link_4_1" reason="Never"/>
     <disable_collisions link1="gripper_shoulder_lower_right_1" link2="link_5_1" reason="Never"/>
+    <disable_collisions link1="gripper_shoulder_lower_right_1" link2="gripper_shoulder_lower_left_1" reason="Never"/>
     <disable_collisions link1="gripper_shoulder_upper_left_1" link2="link_1_1" reason="Never"/>
     <disable_collisions link1="gripper_shoulder_upper_left_1" link2="link_2_1" reason="Never"/>
     <disable_collisions link1="gripper_shoulder_upper_left_1" link2="link_3_1" reason="Never"/>

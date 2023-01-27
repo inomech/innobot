@@ -190,10 +190,10 @@ def generate_launch_description():
 
     
 
-    if(use_gripper == "true"):
-        srdf_file = get_package_file('innobot_moveit_config', 'config/innobot.srdf')
-    else:
-        srdf_file = get_package_file('innobot_moveit_config', 'config/innobot_alone.srdf')
+    # if(use_gripper == "true"):
+    srdf_file = get_package_file('innobot_moveit_config', 'config/innobot.srdf')
+    # else:
+        # srdf_file = get_package_file('innobot_moveit_config', 'config/innobot_alone.srdf')
 
     robot_description_semantic = load_file(srdf_file)
 
