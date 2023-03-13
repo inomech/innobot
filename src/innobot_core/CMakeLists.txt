@@ -41,7 +41,7 @@ find_package(rosidl_default_runtime REQUIRED)
 find_package(Eigen3 REQUIRED)
 
 
-
+include_directories(SYSTEM ${EIGEN3_INCLUDE_DIRS})
 # The innobot_node executable
 add_executable(innobot_node src/innobot_node.cpp)
 ament_target_dependencies(innobot_node rclcpp moveit_msgs moveit_ros_planning_interface innobot_msgs rclcpp_action control_msgs)
