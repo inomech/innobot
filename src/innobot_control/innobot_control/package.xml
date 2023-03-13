@@ -15,7 +15,7 @@
   <exec_depend>innobot_control_bringup</exec_depend>
   <exec_depend>innobot_control_hardware</exec_depend>
 
-  <exec_depend>myworkcell_support</exec_depend>
+  
   <!-- <exec_depend>rrbot_description</exec_depend> -->
   
   <!-- <exec_depend>ros2_control_test_nodes</exec_depend> -->
